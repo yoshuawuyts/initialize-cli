@@ -1,0 +1,43 @@
+{
+  "name": "initialize-cli",
+  "version": "1.0.0",
+  "description": "Generate base CLI files",
+  "bin": {
+    "initialize-cli": "./bin/cli.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "deps": "dependency-check . && dependency-check . --extra --no-dev",
+    "test": "standard && npm run deps && ./bin/cli.js -d ./tmp",
+    "test:cov": "standard && npm run deps && ./bin/cli.js -d ./tmp"
+  },
+  "repository": "yoshuawuyts/initialize-cli",
+  "keywords": [
+    "cli",
+    "initialize",
+    "base",
+    "new",
+    "unix",
+    "minimal",
+    "modular"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cliclopts": "^1.1.1",
+    "closest-package": "^1.0.0",
+    "initialize-engine": "^1.2.1",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "read-closest-package": "^1.1.1"
+  },
+  "devDependencies": {
+    "dependency-check": "^2.5.0",
+    "istanbul": "^0.3.18",
+    "standard": "^5.1.0",
+    "tape": "^4.2.0"
+  },
+  "files": [
+    "index.js",
+    "bin/*"
+  ]
+}

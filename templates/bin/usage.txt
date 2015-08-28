@@ -1,0 +1,11 @@
+Usage: {{name}} [options]
+
+Options:
+  -h, --help        Output usage information
+  -v, --version     Output version number
+
+Examples:
+  $ {{name}}   # {{description}}
+
+Docs: https://github.com/{{{repository}}}
+Bugs: https://github.com/{{{repository}}}/issues

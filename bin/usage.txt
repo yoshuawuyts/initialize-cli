@@ -1,0 +1,12 @@
+Usage: initialize-cli [options]
+
+Options:
+  -h, --help        Output usage information
+  -v, --version     Output version number
+  -d, --directory   Specify output directory
+
+Examples:
+  $ initialize-cli   # generate base cli files
+
+Docs: https://github.com/yoshuawuyts/initialize-cli
+Bugs: https://github.com/yoshuawuyts/initialize-cli/issues
