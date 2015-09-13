@@ -16,11 +16,6 @@ const opts = cliclopts([
     name: 'version',
     abbr: 'v',
     boolean: true
-  },
-  {
-    name: 'directory',
-    abbr: 'd',
-    default: './'
   }
 ])
 
