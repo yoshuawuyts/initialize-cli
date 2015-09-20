@@ -1,6 +1,6 @@
 {
   "name": "initialize-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate base CLI files",
   "bin": {
     "initialize-cli": "./bin/cli.js"
