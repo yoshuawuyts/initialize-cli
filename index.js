@@ -26,20 +26,20 @@ module.exports = create
 create.opts = opts
 
 // create
-// obj -> null
-function create (argv) {
-  engine(opts, argv)
+// (obj, fn) -> null
+function create (argv, cb) {
+  engine(opts, argv, cb)
 }
 
 // change to directory
 // (obj, fn) -> null
 function chdir (argv, next) {
-  const dir = argv.d ? path.resolve(argv.d) : './'
+  const dir = argv.d ? path.resolve(argv.d) : process.cwd()
   mkdirp(path.join(dir, 'bin'), function (err) {
     if (err) return next(err)
     process.chdir(dir)
-    // modify dir path so future commands don't
-    // double reference
+
+    // modify dir path so future commands don't double reference
     const last = argv.directory.length - 1
     argv.directory = argv.directory.split('/').splice(last, 1).join('/')
     next()
@@ -65,6 +65,7 @@ function parsePackage (argv, next) {
 function attachBin (argv, next) {
   var filename = null
   var json = null
+
   closest(path.dirname('.'), findPath, function (err) {
     if (err) return next(err)
 
@@ -74,12 +75,8 @@ function attachBin (argv, next) {
 
     const ws = fs.createWriteStream(filename)
     ws.end(JSON.stringify(json, null, 2))
-    ws.on('error', function (err) {
-      next(err)
-    })
-    ws.on('end', function () {
-      next()
-    })
+    ws.on('error', next)
+    ws.on('finish', next)
   })
 
   function findPath (data, file) {
