@@ -14,7 +14,7 @@ test('should create files', function (t) {
     t.error(err)
 
     const route = path.join(process.cwd(), 'tmp', uuid.v1().slice(0, 6))
-    const cmd = path.join(__dirname, '../bin/cli.js')
+    const cmd = path.join(__dirname, 'bin/cli.js')
     const ps = spawn(cmd, [ '-d', route ])
 
     // ps.stdout.pipe(process.stdout) // uncomment in case of bugs
