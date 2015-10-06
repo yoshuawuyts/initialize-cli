@@ -24,8 +24,8 @@
   "license": "MIT",
   "dependencies": {
     "cliclopts": "^1.1.1",
+    "copy-template-dir": "^1.0.3",
     "end-of-stream": "^1.1.0",
-    "initialize-engine": "^1.2.1",
     "map-limit": "0.0.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",

@@ -17,7 +17,7 @@ test('should create files', function (t) {
     const cmd = path.join(__dirname, 'bin/cli.js')
     const ps = spawn(cmd, [ '-d', route ])
 
-    // ps.stdout.pipe(process.stdout) // uncomment in case of bugs
+    ps.stdout.pipe(process.stdout) // uncomment in case of bugs
     ps.stderr.pipe(process.stderr)
     ps.stdout.on('end', verify)
 

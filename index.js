@@ -23,7 +23,7 @@ function initializeCli (argv, cb) {
 // change to directory
 // (obj, fn) -> null
 function chdir (argv, cb) {
-  const dir = path.join(argv.directory, argv.name)
+  const dir = argv.directory
   mkdirp(dir, function (err) {
     if (err) return cb(err)
     process.chdir(dir)
@@ -44,6 +44,7 @@ function copyFiles (argv, cb) {
 function parsePkg (argv, next) {
   readPackage(function (err, pkg, loc) {
     if (err) return next(err)
+
     argv.description = pkg.description
     argv.repository = pkg.repository
     argv.name = pkg.name
