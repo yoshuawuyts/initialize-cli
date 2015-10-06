@@ -37,10 +37,8 @@ if (argv.version) {
   usage(0)
 } else {
   main(argv, function (err) {
-    if (err) {
-      process.stdout.write(util.format(err) + '\n')
-      process.exit(1)
-    }
+    if (err) process.stderr.write(util.format(err) + '\n')
+    process.exit(err ? 1 : 0)
   })
 }
 
