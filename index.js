@@ -12,7 +12,7 @@ module.exports = initializeCli
 // (obj, fn) -> null
 function initializeCli (argv, cb) {
   argv.dependencies = [ 'cliclopts', 'minimist' ]
-  const tasks = [ chdir, copyFiles, parsePkg ]
+  const tasks = [ mkdir, copyFiles, parsePkg, setMod ]
 
   mapLimit(tasks, 1, iterator, cb)
   function iterator (fn, next) {
@@ -22,7 +22,7 @@ function initializeCli (argv, cb) {
 
 // change to directory
 // (obj, fn) -> null
-function chdir (argv, cb) {
+function mkdir (argv, cb) {
   const dir = argv.directory
   mkdirp(dir, function (err) {
     if (err) return cb(err)
@@ -56,4 +56,11 @@ function parsePkg (argv, next) {
     ws.end(JSON.stringify(pkg, null, 2))
     eos(ws, next)
   })
+}
+
+// change permissions on executable
+// (obj, fn) -> null
+function setMod (argv, next) {
+  const route = path.join(process.cwd(), 'bin/cli.js')
+  fs.chmod(route, 755, next)
 }
