@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const cliclopts = require('cliclopts')
 const minimist = require('minimist')
+const util = require('util')
 const fs = require('fs')
 
 const pkg = require('../package.json')
@@ -32,7 +33,12 @@ if (argv.version) {
 } else if (!argv._.length) {
   process.stdout.write('Error: no command specified\n')
   usage(1)
-} else main(argv)
+} else {
+  main(argv, function (err) {
+    if (err) process.stderr.write(util.format(err) + '\n')
+    process.exit(err ? 1 : 0)
+  })
+}
 
 // print usage & exit
 // num? -> null
