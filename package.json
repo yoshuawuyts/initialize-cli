@@ -24,11 +24,12 @@
   "license": "MIT",
   "dependencies": {
     "cliclopts": "^1.1.1",
-    "closest-package": "^1.0.0",
+    "end-of-stream": "^1.1.0",
     "initialize-engine": "^1.2.1",
+    "map-limit": "0.0.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "read-closest-package": "^1.1.1"
+    "read-closest-package": "^1.2.0"
   },
   "devDependencies": {
     "JSONStream": "^1.0.6",

@@ -21,7 +21,7 @@ const opts = cliclopts([
   {
     name: 'directory',
     abbr: 'd',
-    default: './'
+    default: process.cwd()
   }
 ])
 
