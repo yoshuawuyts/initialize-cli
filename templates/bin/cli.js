@@ -25,7 +25,7 @@ const argv = minimist(process.argv.slice(2), opts.options())
 // parse options
 if (argv.version) {
   const version = require('../package.json').version
-  process.stdout.write('v' + version)
+  process.stdout.write('v' + version + '\n')
   process.exit(0)
 } else if (argv.help) {
   process.stdout.write(pkg.name + ' - ' + pkg.description + '\n')
