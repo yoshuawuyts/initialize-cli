@@ -39,7 +39,6 @@ test('should create files', function (t) {
 
   function verifyMode () {
     const statRoute = path.join(route, 'bin/cli.js')
-    console.log('route', statRoute)
     fs.stat(statRoute, function (err, stat) {
       t.error(err)
       t.equal(typeof stat, 'object')
