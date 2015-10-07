@@ -12,7 +12,7 @@ module.exports = initializeCli
 // (obj, fn) -> null
 function initializeCli (argv, cb) {
   argv.dependencies = [ 'cliclopts', 'minimist' ]
-  const tasks = [ mkdir, copyFiles, parsePkg, setMod ]
+  const tasks = [ mkdir, parsePkg, copyFiles, setMod ]
 
   mapLimit(tasks, 1, iterator, cb)
   function iterator (fn, next) {
@@ -29,13 +29,6 @@ function mkdir (argv, cb) {
     process.chdir(dir)
     cb()
   })
-}
-
-// copy files from dir to dist
-// (obj, fn) -> null
-function copyFiles (argv, cb) {
-  const inDir = path.join(__dirname, 'templates')
-  copy(inDir, process.cwd(), argv, cb)
 }
 
 // find the nearest package.json
@@ -56,6 +49,13 @@ function parsePkg (argv, next) {
     ws.end(JSON.stringify(pkg, null, 2))
     eos(ws, next)
   })
+}
+
+// copy files from dir to dist
+// (obj, fn) -> null
+function copyFiles (argv, cb) {
+  const inDir = path.join(__dirname, 'templates')
+  copy(inDir, process.cwd(), argv, cb)
 }
 
 // change permissions on executable
