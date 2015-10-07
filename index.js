@@ -62,5 +62,5 @@ function parsePkg (argv, next) {
 // (obj, fn) -> null
 function setMod (argv, next) {
   const route = path.join(process.cwd(), 'bin/cli.js')
-  fs.chmod(route, 755, next)
+  fs.chmod(route, '755', next)
 }
