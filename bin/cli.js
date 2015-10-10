@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const cliclopts = require('cliclopts')
 const minimist = require('minimist')
+const pump = require('pump')
 const util = require('util')
 const fs = require('fs')
 
@@ -45,7 +46,7 @@ if (argv.version) {
 // print usage & exit
 // num? -> null
 function usage (exitCode) {
-  fs.createReadStream(__dirname + '/usage.txt')
-    .pipe(process.stdout)
-    .on('close', process.exit.bind(null, exitCode))
+  const rs = fs.createReadStream(__dirname + '/usage.txt')
+  const ws = process.stdout
+  pump(rs, ws, process.exit.bind(null, exitCode))
 }
