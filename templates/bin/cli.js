@@ -32,7 +32,7 @@ if (argv.version) {
   process.stdout.write(pkg.name + ' - ' + pkg.description + '\n')
   usage(0)
 } else if (!argv._.length) {
-  process.stdout.write('Error: no command specified\n')
+  process.stderr.write('Error: no command specified\n')
   usage(1)
 } else {
   main(argv, function (err) {
