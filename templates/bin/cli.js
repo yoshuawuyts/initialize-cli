@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const cliclopts = require('cliclopts')
 const minimist = require('minimist')
-const pump = require('pump')
 const util = require('util')
 const fs = require('fs')
 
@@ -9,16 +8,8 @@ const pkg = require('../package.json')
 const main = require('../')
 
 const opts = cliclopts([
-  {
-    name: 'help',
-    abbr: 'h',
-    boolean: true
-  },
-  {
-    name: 'version',
-    abbr: 'v',
-    boolean: true
-  }
+  { name: 'help', abbr: 'h', boolean: true },
+  { name: 'version', abbr: 'v', boolean: true }
 ])
 
 const argv = minimist(process.argv.slice(2), opts.options())
@@ -46,5 +37,6 @@ if (argv.version) {
 function usage (exitCode) {
   const rs = fs.createReadStream(__dirname + '/usage.txt')
   const ws = process.stdout
-  pump(rs, ws, process.exit.bind(null, exitCode))
+  rs.pipe(ws)
+  ws.on('finish', process.exit.bind(null, exitCode))
 }

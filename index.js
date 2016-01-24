@@ -12,7 +12,7 @@ module.exports = initializeCli
 // Create a fresh cli
 // (obj, fn) -> null
 function initializeCli (argv, cb) {
-  argv.dependencies = [ 'cliclopts', 'minimist', 'pump' ]
+  argv.dependencies = [ 'cliclopts', 'minimist' ]
   const tasks = [ mkdir, parsePkg, copyFiles, setMod, installDeps ]
 
   mapLimit(tasks, 1, iterator, cb)
