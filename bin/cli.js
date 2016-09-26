@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const cliclopts = require('cliclopts')
 const minimist = require('minimist')
+const path = require('path')
 const pump = require('pump')
 const util = require('util')
 const fs = require('fs')
@@ -34,7 +35,7 @@ if (argv.version) {
   process.stdout.write('v' + version)
   process.exit(0)
 } else if (argv.help) {
-  process.stdout.write(pkg.name + ' - ' + pkg.description + '\n')
+  console.info(pkg.name + ' - ' + pkg.description)
   usage(0)
 } else {
   main(argv, function (err) {
@@ -46,7 +47,7 @@ if (argv.version) {
 // print usage & exit
 // num? -> null
 function usage (exitCode) {
-  const rs = fs.createReadStream(__dirname + '/usage.txt')
+  const rs = fs.createReadStream(path.join(__dirname, '/usage.txt'))
   const ws = process.stdout
   pump(rs, ws, process.exit.bind(null, exitCode))
 }
