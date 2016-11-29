@@ -44,7 +44,7 @@
     "standard": "^8.2.0",
     "stat-mode": "^0.2.1",
     "tape": "^4.2.0",
-    "uuid": "^2.0.1"
+    "uuid": "^3.0.1"
   },
   "files": [
     "index.js",
